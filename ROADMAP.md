@@ -65,8 +65,8 @@ Add:
   - `--model bernoulli|series|parallel`
   - `--ps 0.02 0.05 0.01` (component probabilities)
 - New tests:
-  - series edge cases (AND): p=[0, …] → 0, p=[1,1,1] → 1
-  - parallel edge cases (OR): any p=1 → 1, all p=0 → 0
+  - series edge cases (OR): p=[0, …] → 0, p=[1,1,1] → 1
+  - parallel edge cases (AND): any p=1 → 1, all p=0 → 0
 
 Deliverables:
 - simple reliability block diagram logic by CLI

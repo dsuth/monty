@@ -1,5 +1,5 @@
 
-from monty.bernoulli import estimate_failure
+from monty.models.bernoulli import estimate_failure
 
 def test_seed_reproducibility():
     result1 = estimate_failure(0.5, 1000, seed=123)

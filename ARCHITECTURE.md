@@ -135,9 +135,9 @@ trial(rng) draws uniform random and compares to p.
 
 Purpose: series/parallel logic over component probabilities.
 
-series (AND): system fails if all components fail
+series (OR): system fails if all components fail
 
-parallel (OR): system fails if any component fails
+parallel (AND): system fails if any component fails
 
 (And later: mixed topologies / fault tree nodes.)
 

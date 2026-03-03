@@ -1,0 +1,29 @@
+from __future__ import annotations
+
+import random
+
+def series_estimate_failure(probability: float, trials: int, seed: int | None = None) -> float:
+    if trials <= 0:
+        raise ValueError("trials must be > 0")
+    
+    rng = random.Random(seed)
+    
+    failures = 0
+    
+    for _ in range(trials):
+        failures += rng.random() < probability
+
+    return failures / trials
+
+def parallel_estimate_failure(probability: float, trials: int, seed: int | None = None) -> float:
+    if trials <= 0:
+        raise ValueError("trials must be > 0")
+    
+    rng = random.Random(seed)
+    
+    failures = 0
+    
+    for _ in range(trials):
+        failures += rng.random() < probability
+
+    return failures / trials
