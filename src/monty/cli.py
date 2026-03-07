@@ -1,7 +1,7 @@
 import argparse
-from monty.models.bernoulli import estimate_failure
-from monty.models.series_parallel import series_estimate_failure
-from monty.models.series_parallel import parallel_estimate_failure
+from monty.models.bernoulli import BernoulliModel
+from monty.models.series_parallel import SeriesModel, ParallelModel
+from monty.engine.runner import run_trials
 
 # ---- CLI-specific validators ----
 
@@ -58,17 +58,28 @@ def main() -> int:
         parser.error(f"Unknown model: {args.model}")  
     
     if args.model == "bernoulli":
-        rate = estimate_failure(args.p, args.trials, args.seed)
-        print(f"Estimated failure rate: {rate:.6f} (model={args.model}, p={args.p}, trials = {args.trials}, seed={args.seed})")
+        model = BernoulliModel(args.p)
     elif args.model == "series":
-        rate = series_estimate_failure(args.ps, args.trials, args.seed)
-        print(f"Estimated failure rate: {rate:.6f} (model={args.model}, ps={args.ps}, trials = {args.trials}, seed={args.seed})")
+        model = SeriesModel(args.ps)
     elif args.model == "parallel":
-        rate = parallel_estimate_failure(args.ps, args.trials, args.seed)
-        print(f"Estimated failure rate: {rate:.6f} (model={args.model}, ps={args.ps}, trials = {args.trials}, seed={args.seed})")
+        model = ParallelModel(args.ps)
+ 
 
+    result = run_trials(model, args.trial, args.seed)
+    rate = result.failures / result.trials
+
+    if args.model == "bernoulli":
+        print(
+            f"Estimated failure rate: {rate:.6f} "
+            f"(model={args.model}, p={args.p}, trials={args.trials}, seed={args.seed})"
+        )
+    else: 
+        print(
+            f"Estimated failure rate: {rate:.6f} "
+            f"(model={args.model}, ps={args.ps}, trials={args.trials}, seed={args.seed})"
+        )
+    
     return 0
-
 # ---- if called directly, run main() ----
 if __name__ == "__main__":
     raise SystemExit(main())

@@ -1,16 +1,11 @@
 from __future__ import annotations
 
-import random
+class BernoulliModel:
+    def __init__(self, p: float) -> None:
+        if not 0 <= p <= 1:
+            raise ValueError("p must be between 0..1")
+        self.p = p
 
-def estimate_failure(probability: float, trials: int, seed: int | None = None) -> float:
-    if trials <= 0:
-        raise ValueError("trials must be > 0")
-    
-    rng = random.Random(seed)
-    
-    failures = 0
-    
-    for _ in range(trials):
-        failures += rng.random() < probability
+    def trial(self, rng) -> bool:
+        return rng.random() < self.p
 
-    return failures / trials
