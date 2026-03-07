@@ -2,6 +2,7 @@ import argparse
 from monty.models.bernoulli import BernoulliModel
 from monty.models.series_parallel import SeriesModel, ParallelModel
 from monty.engine.runner import run_trials
+from monty.engine.stats import failure_rate, wilson_interval
 
 # ---- CLI-specific validators ----
 
@@ -65,17 +66,20 @@ def main() -> int:
         model = ParallelModel(args.ps)
  
 
-    result = run_trials(model, args.trial, args.seed)
-    rate = result.failures / result.trials
+    result = run_trials(model, args.trials, args.seed)
+    rate = failure_rate(result.failures, result.trials)
+    low, high = wilson_interval(result.failures, result.trials)
 
     if args.model == "bernoulli":
         print(
             f"Estimated failure rate: {rate:.6f} "
+            f"(95% CI: {low:.6f} to {high:.6f}) "
             f"(model={args.model}, p={args.p}, trials={args.trials}, seed={args.seed})"
         )
     else: 
         print(
             f"Estimated failure rate: {rate:.6f} "
+             f"(95% CI: {low:.6f} to {high:.6f}) "
             f"(model={args.model}, ps={args.ps}, trials={args.trials}, seed={args.seed})"
         )
     
