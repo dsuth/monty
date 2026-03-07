@@ -36,7 +36,7 @@ def build_parser() -> argparse.ArgumentParser:
        
     return p
 
-# ---- main (currently contains model, to be moved out) ----
+# ---- main (build model, orchestration ----
 def main() -> int:
     parser = build_parser()
     args = parser.parse_args()

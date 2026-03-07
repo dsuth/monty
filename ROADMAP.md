@@ -23,7 +23,7 @@ The project progresses in layers:
 
 ## Milestones
 
-### M1 — Professional CLI baseline (v0.1 → v0.2)
+### M1 — Professional CLI baseline (v0.1 → v0.2) - COMPLETE
 **Goal:** clean user experience and first test suite.
 
 - Replace manual `ValueError` validation with argparse-native validation (clean error messages, no traceback).
@@ -40,7 +40,7 @@ Deliverables:
 
 ---
 
-### M2 — Modularize into engine + model (v0.2 → v0.3)
+### M2 — Modularize into engine + model (v0.2 → v0.3) - COMPLETE
 **Goal:** separate concerns; prepare for multiple models.
 
 - Extract RNG creation into `engine/rng.py`

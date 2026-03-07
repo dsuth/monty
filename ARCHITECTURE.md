@@ -165,7 +165,7 @@ test_stats.py: stats correctness on known arrays
 test_models_*: model correctness for p=0, p=1, series/parallel edge cases
 
 # Milestones to implement incrementally
-# Milestone 1 — Clean CLI errors + first tests
+# Milestone 1 — Clean CLI errors + first tests - COMPLETE
 
 Use argparse type validators for --p and --trials
 
@@ -173,13 +173,13 @@ Add pytest
 
 Add boundary tests: p=0 → 0, p=1 → 1
 
-# Milestone 2 — Split into engine + model modules
+# Milestone 2 — Split into engine + model modules - COMPLETE
 
 Extract estimate_failure() into models/bernoulli.py + engine/runner.py
 
 CLI becomes thin orchestration
 
-# Milestone 3 — Add series/parallel model
+# Milestone 3 — Add series/parallel model - COMPLETE
 
 --model bernoulli|series|parallel
 
